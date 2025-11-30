@@ -1,0 +1,438 @@
+/* Animations and Transitions */
+
+/* Fade In/Out */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+    }
+}
+
+.fade-in {
+    animation: fadeIn var(--transition-base) ease-forward;
+}
+
+.fade-out {
+    animation: fadeOut var(--transition-base) ease-forward;
+}
+
+/* Slide In/Out */
+@keyframes slideInUp {
+    from {
+        transform: translateY(20px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideOutDown {
+    from {
+        transform: translateY(0);
+        opacity: 1;
+    }
+    to {
+        transform: translateY(20px);
+        opacity: 0;
+    }
+}
+
+@keyframes slideInLeft {
+    from {
+        transform: translateX(-20px);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideOutRight {
+    from {
+        transform: translateX(0);
+        opacity: 1;
+    }
+    to {
+        transform: translateX(20px);
+        opacity: 0;
+    }
+}
+
+.slide-in-up {
+    animation: slideInUp var(--transition-base) ease-out;
+}
+
+.slide-out-down {
+    animation: slideOutDown var(--transition-base) ease-in;
+}
+
+.slide-in-left {
+    animation: slideInLeft var(--transition-base) ease-out;
+}
+
+.slide-out-right {
+    animation: slideOutRight var(--transition-base) ease-in;
+}
+
+/* Scale In/Out */
+@keyframes scaleIn {
+    from {
+        transform: scale(0.95);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+@keyframes scaleOut {
+    from {
+        transform: scale(1);
+        opacity: 1;
+    }
+    to {
+        transform: scale(0.95);
+        opacity: 0;
+    }
+}
+
+.scale-in {
+    animation: scaleIn var(--transition-base) ease-out;
+}
+
+.scale-out {
+    animation: scaleOut var(--transition-base) ease-in;
+}
+
+/* Bounce */
+@keyframes bounce {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+.bounce {
+    animation: bounce 0.5s ease-in-out;
+}
+
+/* Pulse */
+@keyframes pulse {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.5;
+    }
+}
+
+.pulse {
+    animation: pulse 2s ease-in-out infinite;
+}
+
+/* Spin */
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.spin {
+    animation: spin 1s linear infinite;
+}
+
+/* Shimmer (Loading) */
+@keyframes shimmer {
+    0% {
+        background-position: -1000px 0;
+    }
+    100% {
+        background-position: 1000px 0;
+    }
+}
+
+.shimmer {
+    animation: shimmer 2s infinite;
+    background: linear-gradient(
+        90deg,
+        var(--bg-tertiary),
+        var(--bg-secondary),
+        var(--bg-tertiary)
+    );
+    background-size: 1000px 100%;
+}
+
+/* Modal Animations */
+.modal.active .modal-content {
+    animation: slideInUp var(--transition-base) ease-out;
+}
+
+.modal.active .modal-overlay {
+    animation: fadeIn var(--transition-base) ease-out;
+}
+
+/* Task Card Animations */
+.task-card.new-task {
+    animation: slideInUp var(--transition-base) ease-out;
+}
+
+.task-card.deleting {
+    animation: slideOutDown var(--transition-base) ease-in;
+}
+
+.task-card.completing {
+    animation: scaleOut var(--transition-base) ease-in;
+}
+
+/* Button Animations */
+.btn-primary {
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-primary::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transform: translateX(-100%);
+    transition: transform var(--transition-base);
+}
+
+.btn-primary:hover::before {
+    transform: translateX(100%);
+}
+
+/* Notification Slide In */
+@keyframes notificationSlideIn {
+    from {
+        transform: translateX(400px);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes notificationSlideOut {
+    from {
+        transform: translateX(0);
+        opacity: 1;
+    }
+    to {
+        transform: translateX(400px);
+        opacity: 0;
+    }
+}
+
+.notification.show {
+    animation: notificationSlideIn var(--transition-base) ease-out;
+}
+
+.notification.hide {
+    animation: notificationSlideOut var(--transition-base) ease-in;
+}
+
+/* Checkbox Animation */
+input[type="checkbox"]:checked {
+    animation: scaleIn 150ms ease-out;
+}
+
+/* Input Focus Animation */
+.form-input:focus {
+    animation: none;
+}
+
+/* Task Completion Check Mark Animation */
+@keyframes checkMark {
+    0% {
+        transform: scale(0) rotate(-45deg);
+        opacity: 0;
+    }
+    50% {
+        transform: scale(1.2) rotate(0deg);
+    }
+    100% {
+        transform: scale(1) rotate(0deg);
+        opacity: 1;
+    }
+}
+
+.task-card.completed .task-checkbox::after {
+    animation: checkMark 300ms ease-out;
+}
+
+/* Drag and Drop Visual Feedback */
+.task-card.dragging-source {
+    opacity: 0.5;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+.task-card.drag-over-target {
+    border-top: 2px dashed var(--color-primary);
+    padding-top: calc(var(--spacing-lg) - 2px);
+}
+
+/* Gradient Animation */
+@keyframes gradientShift {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+.gradient-animated {
+    background-size: 200% 200%;
+    animation: gradientShift 3s ease infinite;
+}
+
+/* Theme Transition */
+body {
+    transition: background-color var(--transition-base), color var(--transition-base);
+}
+
+/* Chart Animation */
+@keyframes chartFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.stat-card {
+    animation: chartFadeIn var(--transition-base) ease-out;
+}
+
+/* Stagger Animation - removed to avoid conflicts with JS animation-delay */
+
+/* Smooth Color Transitions */
+.filter-item {
+    transition: background-color var(--transition-base), color var(--transition-base);
+}
+
+.filter-item:hover {
+    transition: all var(--transition-base);
+}
+
+/* Menu Animation */
+@keyframes menuFade {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.menu-item {
+    animation: menuFade var(--transition-fast) ease-out;
+}
+
+/* Ripple Effect */
+@keyframes ripple {
+    to {
+        transform: scale(4);
+        opacity: 0;
+    }
+}
+
+.ripple {
+    position: relative;
+    overflow: hidden;
+}
+
+.ripple::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 5px;
+    height: 5px;
+    background: rgba(255, 255, 255, 0.6);
+    opacity: 1;
+    border-radius: 100%;
+    transform: scale(1);
+    transform-origin: 50% 50%;
+    pointer-events: none;
+}
+
+.ripple.active::after {
+    animation: ripple 0.6s ease-out;
+}
+
+/* Subtle Hover Lift Effect */
+.card-lift {
+    transition: transform var(--transition-base), box-shadow var(--transition-base);
+}
+
+.card-lift:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+}
+
+/* Text Overflow Animation */
+@keyframes textOverflow {
+    0% {
+        width: 0;
+    }
+    100% {
+        width: 100%;
+    }
+}
+
+/* Glow Effect */
+@keyframes glow {
+    0% {
+        box-shadow: 0 0 0 rgba(99, 102, 241, 0.4);
+    }
+    50% {
+        box-shadow: 0 0 20px rgba(99, 102, 241, 0.6);
+    }
+    100% {
+        box-shadow: 0 0 0 rgba(99, 102, 241, 0.4);
+    }
+}
+
+.glow {
+    animation: glow 2s ease-in-out infinite;
+}
+
+/* No Animation Preference */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation: none !important;
+        transition: none !important;
+    }
+}
